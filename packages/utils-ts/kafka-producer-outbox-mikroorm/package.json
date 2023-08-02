@@ -1,0 +1,26 @@
+{
+  "name": "@uber-popug/utils-kafka-producer-outbox-mikroorm",
+  "version": "0.1.0",
+  "description": "Producing messages to outbox table (on top of mikroorm)",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "build:prod": "npm run clean && npx tsc",
+    "postinstall": "npm run build:prod",
+    "clean": "rimraf dist/ tsconfig.tsbuildinfo",
+    "format": "eslint \"src/**/*.ts\" --fix",
+    "lint": "eslint \"src/**/*.ts\""
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^9.4.2",
+    "@nestjs/microservices": "^9.4.2",
+    "@mikro-orm/core": "^5.7.12",
+    "@mikro-orm/postgresql": "^5.7.12",
+    "@mikro-orm/nestjs": "^5.1.8",
+    "@rsdk/core": "^2.4.2",
+    "@rsdk/kafka.common": "2.5.0",
+    "@rsdk/kafka.producer": "2.5.0",
+    "@rsdk/logging": "^2.4.2",
+    "uuid": "^9.0.0"
+  }
+}

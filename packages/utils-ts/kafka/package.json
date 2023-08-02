@@ -1,0 +1,26 @@
+{
+  "name": "@uber-popug/utils-kafka",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "build:prod": "npm run clean && npx tsc",
+    "postinstall": "npm run build:prod",
+    "clean": "rimraf dist/ tsconfig.tsbuildinfo",
+    "format": "eslint \"src/**/*.ts\" --fix",
+    "lint": "eslint \"src/**/*.ts\""
+  },
+  "author": "",
+  "license": "Proprietary",
+  "dependencies": {
+    "@mikro-orm/core": "^5.7.12",
+    "@mikro-orm/postgresql": "^5.7.12",
+    "@mikro-orm/nestjs": "^5.1.8",
+    "@nestjs/common": "^9.4.2",
+    "@rsdk/core": "^2.5.0",
+    "@vm/utils-grpc": "^0.1.0",
+    "rxjs": "^7.5.7"
+  },
+  "devDependencies": {}
+}

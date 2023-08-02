@@ -1,0 +1,26 @@
+{
+  "name": "@uber-popug/utils-grpc",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "build:prod": "npm run clean && npx tsc",
+    "postinstall": "npm run build:prod",
+    "clean": "rimraf dist/ tsconfig.tsbuildinfo",
+    "format": "eslint \"src/**/*.ts\" --fix",
+    "lint": "eslint \"src/**/*.ts\""
+  },
+  "author": "",
+  "license": "Proprietary",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.8.7",
+    "@nestjs/common": "^9.4.2",
+    "@rsdk/core": "^2.5.0",
+    "nice-grpc": "^2.1.4",
+    "rxjs": "^7.5.7",
+    "zod": "^3.21.4",
+    "zod-validation-error": "^0.3.0"
+  },
+  "devDependencies": {}
+}
