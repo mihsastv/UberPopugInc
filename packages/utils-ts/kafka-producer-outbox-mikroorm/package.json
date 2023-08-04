@@ -12,7 +12,7 @@
     "lint": "eslint \"src/**/*.ts\""
   },
   "peerDependencies": {
-    "@nestjs/common": "^9.4.2",
+    "@nestjs/common": "^9.4.3",
     "@nestjs/microservices": "^9.4.2",
     "@mikro-orm/core": "^5.7.12",
     "@mikro-orm/postgresql": "^5.7.12",

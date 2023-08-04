@@ -17,9 +17,8 @@
     "@mikro-orm/core": "^5.7.12",
     "@mikro-orm/postgresql": "^5.7.12",
     "@mikro-orm/nestjs": "^5.1.8",
-    "@nestjs/common": "^9.4.2",
+    "@nestjs/common": "^9.4.3",
     "@rsdk/core": "^2.5.0",
-    "@vm/utils-grpc": "^0.1.0",
     "rxjs": "^7.5.7"
   },
   "devDependencies": {}
