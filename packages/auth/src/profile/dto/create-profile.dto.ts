@@ -1,8 +1,9 @@
-import { Profile, RoleEnum } from '../../model';
+import { Role } from '@uber-popug/profile.contract';
+import { Profile } from '../../model';
 
 export class CreateProfile implements Profile {
-  public_id: string;
-  login: string;
-  role: RoleEnum;
-  password: string;
+  publicId!: string;
+  login!: string;
+  role!: Role;
+  password!: string;
 }

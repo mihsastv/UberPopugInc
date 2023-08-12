@@ -24,7 +24,7 @@ export class AuController {
   }
 
   @Post('check')
-  check(@User() user) {
+  check(@User() user: any) {
     return user;
   }
 }

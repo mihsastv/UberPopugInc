@@ -1,31 +1,25 @@
 import { Entity, Enum, PrimaryKey, Property, Unique } from '@mikro-orm/core';
 import * as uuid from 'uuid4';
-
-export enum RoleEnum {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-  MANAGER = 'MANAGER',
-  TOP = 'TOP',
-}
+import { Role } from '@uber-popug/profile.contract';
 
 @Entity()
 export class Profile {
   @PrimaryKey()
-  public_id: string;
+  publicId: string;
 
   /** profile name */
   @Property()
   @Unique()
   login: string;
 
-  @Enum(() => RoleEnum)
-  role: RoleEnum;
+  @Enum(() => Role)
+  role: Role;
 
   @Property()
   password: string;
 
-  constructor(props: Omit<Profile, 'public_id'>) {
-    this.public_id = uuid();
+  constructor(props: Omit<Profile, 'publicId'>) {
+    this.publicId = uuid.default();
     this.login = props.login;
     this.password = props.password;
     this.role = props.role;

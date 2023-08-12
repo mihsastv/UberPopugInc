@@ -1,10 +1,10 @@
-import { RoleEnum } from '../../model';
+import { Role } from '@uber-popug/profile.contract';
 
 export class UpdateProfile {
-  public_id: string;
-  updateProfile: {
+  public_id!: string;
+  updateProfile!: {
     password: string;
     login: string;
-    role: RoleEnum;
+    role: Role;
   };
 }

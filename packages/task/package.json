@@ -67,6 +67,8 @@
     "@rsdk/kafka.transport": "^2.5.0",
     "@rsdk/logging": "^2.4.2",
     "@rsdk/testing": "^2.5.0",
+    "@uber-popug/profile.contract": "^0.1.0",
+    "@uber-popug/task.contract": "^0.1.0",
     "@uber-popug/utils-mikro-orm": "^0.1.0",
     "axios": "^1.4.0",
     "class-validator": "^0.14.0",
@@ -80,7 +82,8 @@
     "uuid4": "^2.0.3"
   },
   "devDependencies": {
-    "@mikro-orm/cli": "^5.7.12"
+    "@mikro-orm/cli": "^5.7.12",
+    "@types/uuid4": "^2.0.0"
   },
   "mikro-orm": {
     "useTsNode": true,

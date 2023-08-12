@@ -1,10 +1,9 @@
-import { Controller, Delete, Get, Post, Put, UseGuards } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { ProfileService } from './profile.service';
 import { CreateProfile } from './dto/create-profile.dto';
 import { DeleteProfile } from './dto/delete-profile.dto';
 import { UpdateProfile } from './dto/update-profile.dto';
 import { Profile } from '../model';
-import { User } from '../common/user.decorator';
 
 @Controller('profile')
 export class ProfileController {
@@ -26,7 +25,7 @@ export class ProfileController {
   }
 
   @Get()
-  getProfiles(@User() user): Promise<Profile[]> {
+  getProfiles(): Promise<Profile[]> {
     return this.profileService.get();
   }
 }

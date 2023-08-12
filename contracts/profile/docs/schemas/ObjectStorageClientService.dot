@@ -1,0 +1,53 @@
+digraph protodot {
+	Node_Ja_102 [ shape=plaintext, tooltip="ObjectStorageClientService", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#ffd700"><TR><TD COLSPAN="3" PORT="header" BGCOLOR="#ff7f50" ALIGN="right"><b>ObjectStorageClientService</b></TD></TR><TR><TD ALIGN="left"><b>GetObject</b></TD><TD></TD><TD PORT="poGetObject_request" ALIGN="right">GetObjectRequest</TD></TR><TR style="border-bottom: 1px solid red"><TD></TD><TD BGCOLOR="#ff7f50"></TD><TD PORT="poGetObject_response" ALIGN="right" BGCOLOR="#ff7f50">GetObjectResponse</TD></TR><TR><TD ALIGN="left"><b>GetObjectStream</b></TD><TD></TD><TD PORT="poGetObjectStream_request" ALIGN="right">GetObjectStreamRequest</TD></TR><TR style="border-bottom: 1px solid red"><TD></TD><TD BGCOLOR="#ff7f50">stream</TD><TD PORT="poGetObjectStream_response" ALIGN="right" BGCOLOR="#ff7f50">GetObjectStreamResponse</TD></TR><TR><TD ALIGN="left"><b>AddObject</b></TD><TD></TD><TD PORT="poAddObject_request" ALIGN="right">AddObjectRequest</TD></TR><TR style="border-bottom: 1px solid red"><TD></TD><TD BGCOLOR="#ff7f50"></TD><TD PORT="poAddObject_response" ALIGN="right" BGCOLOR="#ff7f50">AddObjectResponse</TD></TR><TR><TD ALIGN="left"><b>AddObjectStream</b></TD><TD>stream</TD><TD PORT="poAddObjectStream_request" ALIGN="right">AddObjectStreamRequest</TD></TR><TR style="border-bottom: 1px solid red"><TD></TD><TD BGCOLOR="#ff7f50"></TD><TD PORT="poAddObjectStream_response" ALIGN="right" BGCOLOR="#ff7f50">AddObjectStreamResponse</TD></TR><TR><TD ALIGN="left"><b>RemoveObject</b></TD><TD></TD><TD PORT="poRemoveObject_request" ALIGN="right">RemoveObjectRequest</TD></TR><TR style="border-bottom: 1px solid red"><TD></TD><TD BGCOLOR="#ff7f50"></TD><TD PORT="poRemoveObject_response" ALIGN="right" BGCOLOR="#ff7f50">RemoveObjectResponse</TD></TR></TABLE>> ];
+	Node_Ja_102:poAddObjectStream_request:e->Node_Ja_114:header[ color="#000000", tooltip="Ja_102 --> Ja_114" ];
+	Node_Ja_102:poAddObjectStream_response:e->Node_Ja_115:header[ color="#000000", tooltip="Ja_102 --> Ja_115" ];
+	Node_Ja_102:poAddObject_request:e->Node_Ja_112:header[ color="#000000", tooltip="Ja_102 --> Ja_112" ];
+	Node_Ja_102:poAddObject_response:e->Node_Ja_113:header[ color="#000000", tooltip="Ja_102 --> Ja_113" ];
+	Node_Ja_102:poGetObjectStream_request:e->Node_Ja_109:header[ color="#000000", tooltip="Ja_102 --> Ja_109" ];
+	Node_Ja_102:poGetObjectStream_response:e->Node_Ja_111:header[ color="#000000", tooltip="Ja_102 --> Ja_111" ];
+	Node_Ja_102:poGetObject_request:e->Node_Ja_108:header[ color="#000000", tooltip="Ja_102 --> Ja_108" ];
+	Node_Ja_102:poGetObject_response:e->Node_Ja_110:header[ color="#000000", tooltip="Ja_102 --> Ja_110" ];
+	Node_Ja_102:poRemoveObject_request:e->Node_Ja_116:header[ color="#000000", tooltip="Ja_102 --> Ja_116" ];
+	Node_Ja_102:poRemoveObject_response:e->Node_Ja_117:header[ color="#000000", tooltip="Ja_102 --> Ja_117" ];
+	Node_Ja_108 [ shape=plaintext, tooltip="rsdk.examples.v1.GetObjectRequest", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>GetObjectRequest</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">key</TD><TD BGCOLOR="#a6cee3" PORT="pokey" ALIGN="right" TITLE="string"><i>string</i></TD></TR></TABLE>> ];
+	Node_Ja_109 [ shape=plaintext, tooltip="rsdk.examples.v1.GetObjectStreamRequest", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>GetObjectStreamRequest</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">key</TD><TD BGCOLOR="#a6cee3" PORT="pokey" ALIGN="right" TITLE="string"><i>string</i></TD></TR></TABLE>> ];
+	Node_Ja_110 [ shape=plaintext, tooltip="rsdk.examples.v1.GetObjectResponse", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>GetObjectResponse</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">key</TD><TD BGCOLOR="#a6cee3" PORT="pokey" ALIGN="right" TITLE="string"><i>string</i></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">2</TD><TD ALIGN="left">object</TD><TD BGCOLOR="#fb9a99" PORT="poobject" ALIGN="right"><b>Object</b></TD></TR></TABLE>> ];
+	Node_Ja_110:poobject:e->Node_Ja_100:header[ color="#000000", tooltip="Ja_110 --> Ja_100" ];
+	Node_Ja_111 [ shape=plaintext, tooltip="rsdk.examples.v1.GetObjectStreamResponse", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>GetObjectStreamResponse</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">key</TD><TD BGCOLOR="#a6cee3" PORT="pokey" ALIGN="right" TITLE="string"><i>string</i></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">2</TD><TD ALIGN="left">object</TD><TD BGCOLOR="#fb9a99" PORT="poobject" ALIGN="right"><b>Object</b></TD></TR></TABLE>> ];
+	Node_Ja_111:poobject:e->Node_Ja_100:header[ color="#000000", tooltip="Ja_111 --> Ja_100" ];
+	Node_Ja_112 [ shape=plaintext, tooltip="rsdk.examples.v1.AddObjectRequest", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>AddObjectRequest</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">object</TD><TD BGCOLOR="#fb9a99" PORT="poobject" ALIGN="right"><b>Object</b></TD></TR></TABLE>> ];
+	Node_Ja_112:poobject:e->Node_Ja_100:header[ color="#000000", tooltip="Ja_112 --> Ja_100" ];
+	Node_Ja_113 [ shape=plaintext, tooltip="rsdk.examples.v1.AddObjectResponse", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>AddObjectResponse</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">stored_object</TD><TD BGCOLOR="#fb9a99" PORT="postored_object" ALIGN="right"><b>StoredObject</b></TD></TR></TABLE>> ];
+	Node_Ja_113:postored_object:e->Node_Ja_101:header[ color="#000000", tooltip="Ja_113 --> Ja_101" ];
+	Node_Ja_114 [ shape=plaintext, tooltip="rsdk.examples.v1.AddObjectStreamRequest", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>AddObjectStreamRequest</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">object</TD><TD BGCOLOR="#fb9a99" PORT="poobject" ALIGN="right"><b>Object</b></TD></TR></TABLE>> ];
+	Node_Ja_114:poobject:e->Node_Ja_100:header[ color="#000000", tooltip="Ja_114 --> Ja_100" ];
+	Node_Ja_115 [ shape=plaintext, tooltip="rsdk.examples.v1.AddObjectStreamResponse", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>AddObjectStreamResponse</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">stored_object</TD><TD BGCOLOR="#fb9a99" PORT="postored_object" ALIGN="right"><b>StoredObject</b></TD></TR></TABLE>> ];
+	Node_Ja_115:postored_object:e->Node_Ja_101:header[ color="#000000", tooltip="Ja_115 --> Ja_101" ];
+	Node_Ja_116 [ shape=plaintext, tooltip="rsdk.examples.v1.RemoveObjectRequest", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>RemoveObjectRequest</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">key</TD><TD BGCOLOR="#a6cee3" PORT="pokey" ALIGN="right" TITLE="string"><i>string</i></TD></TR></TABLE>> ];
+	Node_Ja_117 [ shape=plaintext, tooltip="rsdk.examples.v1.RemoveObjectResponse", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>RemoveObjectResponse</b></TD></TR></TABLE>> ];
+	bgcolor="transparent";
+	label="rsdk.examples.v1";
+	node [ shape=plaintext, fontsize=10, fontname="Ubuntu" ] ;
+	rankdir=LR;
+	subgraph cluster_05aca01382df {
+	label="stored_object.proto";
+	tooltip="rsdk/examples/v1/stored_object.proto";
+	style=filled;
+	fillcolor="#caff70";
+	Node_Ja_101 [ shape=plaintext, tooltip="rsdk.examples.v1.StoredObject", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>StoredObject</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">key</TD><TD BGCOLOR="#a6cee3" PORT="pokey" ALIGN="right" TITLE="string"><i>string</i></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">2</TD><TD ALIGN="left">filename</TD><TD BGCOLOR="#a6cee3" PORT="pofilename" ALIGN="right" TITLE="string"><i>string</i></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">3</TD><TD ALIGN="left">size</TD><TD BGCOLOR="#a6cee3" PORT="posize" ALIGN="right" TITLE="uint32"><i>uint32</i></TD></TR></TABLE>> ];
+
+}
+;
+	subgraph cluster_71fa3eb2ad6c {
+	label="object.proto";
+	tooltip="rsdk/examples/v1/object.proto";
+	style=filled;
+	fillcolor="#caff70";
+	Node_Ja_100 [ shape=plaintext, tooltip="rsdk.examples.v1.Object", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>Object</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">filename</TD><TD BGCOLOR="#a6cee3" PORT="pofilename" ALIGN="right" TITLE="string"><i>string</i></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">2</TD><TD ALIGN="left">content</TD><TD BGCOLOR="#a6cee3" PORT="pocontent" ALIGN="right" TITLE="bytes"><i>bytes</i></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">3</TD><TD ALIGN="left">content_type</TD><TD BGCOLOR="#a6cee3" PORT="pocontent_type" ALIGN="right" TITLE="string"><i>string</i></TD></TR></TABLE>> ];
+
+}
+;
+	tooltip="rsdk.examples.v1";
+
+}

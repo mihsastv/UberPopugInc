@@ -5,8 +5,8 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuService {
-  @Inject() private profileService: ProfileService;
-  @Inject() private jwtService: JwtService;
+  @Inject() private profileService!: ProfileService;
+  @Inject() private jwtService!: JwtService;
 
   async signIn(cred: SignIn): Promise<any> {
     const user = await this.profileService.findOne(cred.login);

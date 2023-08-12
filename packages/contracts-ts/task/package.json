@@ -1,0 +1,13 @@
+{
+  "name": "@uber-popug/task.contract",
+  "version": "0.1.0",
+  "description": "Typescript Profile contract",
+  "main": "./dist/task.v1.js",
+  "scripts": {
+    "build": "npm run clean && npm run generate:contract && npx tsc",
+    "generate:contract": "cd ../../../contracts/task && ppm install && ppm generate --out=../../packages/contracts-ts/task/dist typescript",
+    "clean": "rimraf dist/"
+  },
+  "author": "rvision",
+  "license": "Proprietary"
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "http://repos.rvision.pro/platform/ppm/schema.json",
+  "name": "uber-popug.task-contract",
+  "version": "1.0.0",
+  "protogen": "1.6.0",
+  "dependencies": {
+    "https://github.com/R-Vision/ppm-events": "1.0.0"
+  }
+}

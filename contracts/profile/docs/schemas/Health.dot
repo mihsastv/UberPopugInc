@@ -1,0 +1,25 @@
+digraph protodot {
+	Node_Ja_100 [ shape=plaintext, tooltip="grpc.health.v1.HealthCheckRequest", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>HealthCheckRequest</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">service</TD><TD BGCOLOR="#a6cee3" PORT="poservice" ALIGN="right" TITLE="string"><i>string</i></TD></TR></TABLE>> ];
+	Node_Ja_101 [ shape=plaintext, tooltip="grpc.health.v1.HealthCheckResponse", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>HealthCheckResponse</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">status</TD><TD BGCOLOR="#b2df8a" PORT="postatus" ALIGN="right"><u>ServingStatus</u></TD></TR></TABLE>> ];
+	Node_Ja_101:postatus:e->Node_Ja_102[ color="#008000", tooltip="Ja_101 --> Ja_102" ];
+	Node_Ja_103 [ shape=plaintext, tooltip="Health", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#ffd700"><TR><TD COLSPAN="3" PORT="header" BGCOLOR="#ff7f50" ALIGN="right"><b>Health</b></TD></TR><TR><TD ALIGN="left"><b>Check</b></TD><TD></TD><TD PORT="poCheck_request" ALIGN="right">HealthCheckRequest</TD></TR><TR style="border-bottom: 1px solid red"><TD></TD><TD BGCOLOR="#ff7f50"></TD><TD PORT="poCheck_response" ALIGN="right" BGCOLOR="#ff7f50">HealthCheckResponse</TD></TR><TR><TD ALIGN="left"><b>Watch</b></TD><TD></TD><TD PORT="poWatch_request" ALIGN="right">HealthCheckRequest</TD></TR><TR style="border-bottom: 1px solid red"><TD></TD><TD BGCOLOR="#ff7f50">stream</TD><TD PORT="poWatch_response" ALIGN="right" BGCOLOR="#ff7f50">HealthCheckResponse</TD></TR></TABLE>> ];
+	Node_Ja_103:poCheck_request:e->Node_Ja_100:header[ color="#000000", tooltip="Ja_103 --> Ja_100" ];
+	Node_Ja_103:poCheck_response:e->Node_Ja_101:header[ color="#000000", tooltip="Ja_103 --> Ja_101" ];
+	Node_Ja_103:poWatch_request:e->Node_Ja_100:header[ color="#000000", tooltip="Ja_103 --> Ja_100" ];
+	Node_Ja_103:poWatch_response:e->Node_Ja_101:header[ color="#000000", tooltip="Ja_103 --> Ja_101" ];
+	bgcolor="transparent";
+	label="grpc.health.v1";
+	node [ shape=plaintext, fontsize=10, fontname="Ubuntu" ] ;
+	rankdir=LR;
+	subgraph cluster_efd015169d3a {
+	label="grpc.health.v1";
+	tooltip="grpc.health.v1";
+	style=filled;
+	fillcolor="#caff70";
+	Node_Ja_102 [ shape=plaintext, tooltip="ServingStatus", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#b2df8a"><TR><TD COLSPAN="2" PORT="header" BGCOLOR="#33a02c" ALIGN="right">enum <b>ServingStatus</b></TD></TR><TR><TD BGCOLOR="#b2df8a" ALIGN="left">UNKNOWN</TD><TD BGCOLOR="#b2df8a" ALIGN="left">0</TD></TR><TR><TD BGCOLOR="#b2df8a" ALIGN="left">SERVING</TD><TD BGCOLOR="#b2df8a" ALIGN="left">1</TD></TR><TR><TD BGCOLOR="#b2df8a" ALIGN="left">NOT_SERVING</TD><TD BGCOLOR="#b2df8a" ALIGN="left">2</TD></TR><TR><TD BGCOLOR="#b2df8a" ALIGN="left">SERVICE_UNKNOWN</TD><TD BGCOLOR="#b2df8a" ALIGN="left">3</TD></TR></TABLE>> ];
+
+}
+;
+	tooltip="grpc.health.v1";
+
+}

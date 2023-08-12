@@ -1,4 +1,4 @@
 export class SignIn {
-  login: string;
-  password: string;
+  login!: string;
+  password!: string;
 }
