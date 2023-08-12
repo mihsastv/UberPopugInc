@@ -1,48 +1,13 @@
 import { EntityManager } from '@mikro-orm/core';
 import { Injectable } from '@nestjs/common';
-import type {
-  CreateProfileRequest,
-  CreateProfileResponse,
-  DeleteProfileRequest,
-  DeleteProfileResponse,
-  GetProfileResponse,
-  TimeTemplate,
-  TypeOfProfile,
-  UpdateProfileRequest,
-  UpdateProfileResponse,
-} from '@vm/scan-policy-grpc';
 
 import { Profile } from '../model';
-
-class SanitazeUpdateProfileReqest implements UpdateProfileRequest {
-  name?: string;
-  description?: string;
-  type?: TypeOfProfile;
-  extendSettings?: boolean;
-  nmap?: string;
-  tcpSyn?: string;
-  udp?: string;
-  icmp?: boolean;
-  dnsNameResolver?: boolean;
-  defineOs?: boolean;
-  defineVersionService?: boolean;
-  timeTemplate?: TimeTemplate;
-  connectionTimeout?: number;
-  scanTcp?: string;
-  scanUdp?: string;
-  authSsh?: string;
-  importOpenPort?: boolean;
-  importUsers?: boolean;
-  importSecurityOptions?: boolean;
-  importWindowsUpdates?: boolean;
-  id!: string;
-}
 
 @Injectable()
 export class ProfileService {
   constructor(private readonly em: EntityManager) {}
 
-  public async get(): Promise<GetProfileResponse> {
+  public async get(): Promise<> {
     const data = await this.em.find(Profile, {}, {});
 
     return { success: true, data };

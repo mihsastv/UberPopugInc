@@ -31,7 +31,7 @@ export class ProfileController implements ScanProfileGrpcController {
     return this.profileService.update(request);
   }
 
-  getProfile(request: GetProfileRequest): Promise<GetProfileResponse> {
+  getProfiles(request: GetProfileRequest): Promise<GetProfileResponse> {
     return this.profileService.get();
   }
 }
