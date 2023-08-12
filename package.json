@@ -3,6 +3,7 @@
   "workspaces": [
     "packages/utils-ts/*",
     "packages/auth",
+    "packages/task",
     "packages/front"
   ],
   "engines": {

@@ -8,7 +8,7 @@ const configService = new ConfigService();
 
 const MikroOrmConfig: Options = {
   dbName: configService.get('UBER_POPUG_AUTH_POSTGRES_DB'),
-  entities: [Entities.Profile],
+  entities: [Entities.Task],
   host: configService.get('UBER_POPUG_AUTH_POSTGRES_HOST'),
   password: configService.get('UBER_POPUG_AUTH_POSTGRES_PASSWORD'),
   port: configService.get('UBER_POPUG_AUTH_POSTGRES_PORT'),

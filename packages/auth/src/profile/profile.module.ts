@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UtilsMikroOrmModule } from '@vm/utils-mikro-orm';
+import { UtilsMikroOrmModule } from '@uber-popug/utils-mikro-orm';
 
 import { Profile } from '../model';
 
@@ -12,5 +12,6 @@ const entities = [Profile];
   controllers: [ProfileController],
   imports: [UtilsMikroOrmModule.forRoot(entities)],
   providers: [ProfileService],
+  exports: [ProfileService],
 })
 export class ProfileModule {}

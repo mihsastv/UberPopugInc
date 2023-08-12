@@ -1,37 +1,32 @@
-import { Controller } from '@nestjs/common';
-import type {
-  CreateProfileRequest,
-  CreateProfileResponse,
-  DeleteProfileRequest,
-  DeleteProfileResponse,
-  GetProfileRequest,
-  GetProfileResponse,
-  ScanProfileGrpcController,
-  UpdateProfileRequest,
-  UpdateProfileResponse,
-} from '@vm/scan-policy-grpc';
-import { ScanProfileGrpcMethods } from '@vm/scan-policy-grpc';
-
+import { Controller, Delete, Get, Post, Put, UseGuards } from '@nestjs/common';
 import { ProfileService } from './profile.service';
+import { CreateProfile } from './dto/create-profile.dto';
+import { DeleteProfile } from './dto/delete-profile.dto';
+import { UpdateProfile } from './dto/update-profile.dto';
+import { Profile } from '../model';
+import { User } from '../common/user.decorator';
 
-@Controller()
-@ScanProfileGrpcMethods()
-export class ProfileController implements ScanProfileGrpcController {
+@Controller('profile')
+export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
 
-  createProfile(request: CreateProfileRequest): Promise<CreateProfileResponse> {
+  @Post()
+  createProfile(request: CreateProfile): Promise<boolean> {
     return this.profileService.create(request);
   }
 
-  deleteProfile(request: DeleteProfileRequest): Promise<DeleteProfileResponse> {
+  @Delete()
+  deleteProfile(request: DeleteProfile): Promise<boolean> {
     return this.profileService.delete(request);
   }
 
-  updateProfile(request: UpdateProfileRequest): Promise<UpdateProfileResponse> {
+  @Put()
+  updateProfile(request: UpdateProfile): Promise<boolean> {
     return this.profileService.update(request);
   }
 
-  getProfiles(request: GetProfileRequest): Promise<GetProfileResponse> {
+  @Get()
+  getProfiles(@User() user): Promise<Profile[]> {
     return this.profileService.get();
   }
 }

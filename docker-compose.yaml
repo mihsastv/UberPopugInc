@@ -1,0 +1,134 @@
+---
+version: '3.8'
+services:
+  # kafka:
+  #   image: bitnami/kafka:3.4.0
+  #   environment:
+  #     - ALLOW_PLAINTEXT_LISTENER=yes
+  #     - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka:9092,EXTERNAL://localhost:9093
+  #     - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+  #     - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+  #     - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@127.0.0.1:9094
+  #     - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+  #     - KAFKA_CFG_LISTENERS=INTERNAL://:9092,EXTERNAL://:9093,CONTROLLER://:9094
+  #     - KAFKA_CFG_NODE_ID=1
+  #     - KAFKA_CFG_PROCESS_ROLES=broker,controller
+  #     - KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER
+  #     - KAFKA_INTER_BROKER_LISTENER_NAME=INTERNAL
+  #     - KAFKA_KRAFT_CLUSTER_ID=N-8Epk7LTfCc-lObC7llXA
+  #   healthcheck:
+  #     test: ["CMD", "bash", "-c", "unset", "JMX_PORT", ";", "/opt/bitnami/kafka/bin/kafka-topics.sh", "--bootstrap-server", "127.0.0.1:9002", "--list"]
+  #     interval: 10s
+  #     start_period: 10s
+  #     timeout: 2s
+  #     retries: 15
+  #   expose:
+  #     - 9093
+  #   ports:
+  #     - 9095:9093
+  #     - 9094:9092
+
+  # kafka-ui:
+  #   image: provectuslabs/kafka-ui:v0.7.0
+  #   expose:
+  #     - 8080
+  #   ports:
+  #     - 8080:8080
+  #   depends_on:
+  #     connect:
+  #       condition: service_healthy
+  #     kafka:
+  #       condition: service_healthy
+  #   environment:
+  #     KAFKA_CLUSTERS_0_NAME: local
+  #     KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+  #     KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: first
+  #     KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://connect:8083
+
+  # ### MIGRATIONS
+
+  # # Creating topics that are not created. There is a task to create more comfortable tool for this: PFM-227
+  # kafka-init:
+  #   image: bitnami/kafka:3.4.0
+  #   entrypoint: [ '/bin/sh', '-c' ]
+  #   depends_on:
+  #     kafka:
+  #       condition: service_healthy
+  #   command: |
+  #     "
+  #     # TODO: Do we really need it, while there are healthchecks and depends on?
+  #     # blocks until kafka is reachable
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --list
+
+  #     # creates topics
+  #     echo -e 'Creating kafka topics...'
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.scan-init --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.scan-inited --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.scan-cancel --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.scan-canceled --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.scan-interrupt --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.scan-interrupted --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.scan-processed --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.scan-finished --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.scan-finish --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-init --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-inited --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-cancel --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-canceled --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-interrupt --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-interrupted --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-finished --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-finish --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-connecting --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-connected --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-disconnecting --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-disconnected --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-executing --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-executed --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.data_collection_event.host-data --replication-factor 1 --partitions 2
+
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.scan-init --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.scan-inited --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.scan-cancel --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.scan-canceled --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.scan-finish --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.scan-finished --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.host_init --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.host-inited --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.host_finish --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.host_finished --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.host_canceled --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.vuln_analyzer_event.host_interrupted --replication-factor 1 --partitions 2
+
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.discovery.discovery-incoming --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.discovery.discovery-outgoing --replication-factor 1 --partitions 2
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic events.vm.discovery.discovery-host --replication-factor 1 --partitions 2
+
+  #     echo -e 'Successfully created the following topics:'
+  #     /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --list
+  #     "
+
+
+  db:
+    image: postgres:15.3-alpine
+    command: postgres -c 'wal_level=logical'
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rvision
+      POSTGRES_PASSWORD: pxtm0222
+      POSTGRES_DB: test
+    healthcheck:
+      test: pg_isready -U rvision -d test
+      interval: 10s
+      start_period: 10s
+      timeout: 2s
+      retries: 15
+    expose:
+      - 5432
+    ports:
+      - '5454:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local

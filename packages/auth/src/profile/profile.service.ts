@@ -1,63 +1,71 @@
-import { EntityManager } from '@mikro-orm/core';
+import { ConstraintViolationException, EntityManager } from '@mikro-orm/core';
 import { Injectable } from '@nestjs/common';
 
 import { Profile } from '../model';
+import { CreateProfile } from './dto/create-profile.dto';
+import { DeleteProfile } from './dto/delete-profile.dto';
+import { UpdateProfile } from './dto/update-profile.dto';
 
 @Injectable()
 export class ProfileService {
   constructor(private readonly em: EntityManager) {}
 
-  public async get(): Promise<> {
+  public async get(): Promise<Profile[]> {
     const data = await this.em.find(Profile, {}, {});
 
-    return { success: true, data };
+    return data;
   }
 
-  public async create(
-    request: CreateProfileRequest,
-  ): Promise<CreateProfileResponse> {
+  public async create(request: CreateProfile): Promise<boolean> {
     const account = new Profile({
       ...request,
     });
 
-    await this.em.persistAndFlush(account);
-    return { success: true, data: account };
+    return this.em
+      .persistAndFlush(account)
+      .then(() => true)
+      .catch(() => false);
   }
 
-  public async delete(
-    request: DeleteProfileRequest,
-  ): Promise<DeleteProfileResponse> {
-    const account = await this.em.findOne(Profile, { id: request.id });
+  public async delete(request: DeleteProfile): Promise<boolean> {
+    const account = await this.em.findOne(Profile, {
+      public_id: request.public_id,
+    });
 
     if (!account) {
-      return {
-        success: false,
-        data: request,
-        error: `Profile ${request.id} not found`,
-      };
+      return false;
     }
 
-    await this.em.removeAndFlush(account);
-    return { success: true, data: request };
+    return this.em
+      .removeAndFlush(account)
+      .then(() => true)
+      .catch(() => false);
   }
 
-  public async update(
-    request: UpdateProfileRequest,
-  ): Promise<UpdateProfileResponse> {
-    const profile = await this.em.findOne(Profile, { id: request.id });
-    const profileUPdate = { ...request } as SanitazeUpdateProfileReqest;
+  public async update(request: UpdateProfile): Promise<boolean> {
+    const profile = await this.em.findOne(Profile, {
+      public_id: request.public_id,
+    });
 
     if (!profile) {
-      return {
-        success: false,
-        data: request,
-        error: `Profile ${request.id} not found`,
-      };
+      return false;
     }
 
-    const id = request.id;
+    if (request.updateProfile.role) {
+      console.log('Отправляем сообщение о изменении роли');
+    }
 
-    await this.em.nativeUpdate(Profile, { id }, profileUPdate);
-    return { success: true, data: request };
+    return this.em
+      .nativeUpdate(
+        Profile,
+        { public_id: request.public_id },
+        request.updateProfile,
+      )
+      .then(() => true)
+      .catch(() => false);
+  }
+
+  async findOne(login: string): Promise<Profile | undefined> {
+    return this.em.findOne(Profile, { login });
   }
 }
