@@ -2,62 +2,89 @@ import { EntityManager } from '@mikro-orm/core';
 import { Injectable } from '@nestjs/common';
 
 import { Profile } from '../model';
+import { CreateProfile } from './dto/create-profile.dto';
+import { DeleteProfile } from './dto/delete-profile.dto';
+import { UpdateProfile } from './dto/update-profile.dto';
+import { ProfileProducerService } from './profile.producer';
 
 @Injectable()
 export class ProfileService {
-  constructor(private readonly em: EntityManager) {}
+  constructor(
+    private readonly em: EntityManager,
+    private readonly profileProducerService: ProfileProducerService,
+  ) {}
 
-  public async get(): Promise<> {
+  public async get(): Promise<Profile[]> {
     const data = await this.em.find(Profile, {}, {});
 
-    return { success: true, data };
+    return data;
   }
 
-  public async create(
-    request: CreateProfileRequest,
-  ): Promise<CreateProfileResponse> {
-    const account = new Profile({
+  public async create(request: CreateProfile): Promise<boolean> {
+    const profile = new Profile({
       ...request,
     });
 
-    await this.em.persistAndFlush(account);
-    return { success: true, data: account };
+    return this.em
+      .persistAndFlush(profile)
+      .then(() => {
+        this.profileProducerService.createProfileEvent(profile);
+        return true;
+      })
+      .catch(() => false);
   }
 
-  public async delete(
-    request: DeleteProfileRequest,
-  ): Promise<DeleteProfileResponse> {
-    const account = await this.em.findOne(Profile, { id: request.id });
+  public async delete(request: DeleteProfile): Promise<boolean> {
+    const account = await this.em.findOne(Profile, {
+      publicId: request.publicId,
+    });
 
     if (!account) {
-      return {
-        success: false,
-        data: request,
-        error: `Profile ${request.id} not found`,
-      };
+      return false;
     }
 
-    await this.em.removeAndFlush(account);
-    return { success: true, data: request };
+    return this.em
+      .removeAndFlush(account)
+      .then(() => {
+        this.profileProducerService.deleteProfileEvent(request.publicId);
+        return true;
+      })
+      .catch(() => false);
   }
 
-  public async update(
-    request: UpdateProfileRequest,
-  ): Promise<UpdateProfileResponse> {
-    const profile = await this.em.findOne(Profile, { id: request.id });
-    const profileUPdate = { ...request } as SanitazeUpdateProfileReqest;
+  public async update(request: UpdateProfile): Promise<boolean> {
+    const profile = await this.em.findOne(Profile, {
+      publicId: request.public_id,
+    });
 
     if (!profile) {
-      return {
-        success: false,
-        data: request,
-        error: `Profile ${request.id} not found`,
-      };
+      return false;
     }
 
-    const id = request.id;
+    if (
+      request.updateProfile.role &&
+      request.updateProfile.role !== profile.role
+    ) {
+      this.profileProducerService.updateProfileRoleEvent({
+        publicId: profile.publicId,
+        role: request.updateProfile.role,
+      });
+    }
 
-    await this.em.nativeUpdate(Profile, { id }, profileUPdate);
-    return { success: true, data: request };
+    return this.em
+      .nativeUpdate(
+        Profile,
+        { publicId: request.public_id },
+        request.updateProfile,
+      )
+      .then(() => {
+        this.profileProducerService.updateProfileEvent(profile);
+        return true;
+      })
+      .catch(() => false);
+  }
+
+  async findOne(login: string): Promise<Profile | null> {
+    return this.em.findOne(Profile, { login });
   }
 }

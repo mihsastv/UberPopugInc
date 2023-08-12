@@ -1,0 +1,13 @@
+digraph protodot {
+	Node_Ja_100 [ shape=plaintext, tooltip="grpc.metrics.v1.GetRequest", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>GetRequest</b></TD></TR></TABLE>> ];
+	Node_Ja_101 [ shape=plaintext, tooltip="grpc.metrics.v1.GetResponse", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#fffaf0"><TR><TD COLSPAN="4" PORT="header" BGCOLOR="#e31a1c" ALIGN="right"><b>GetResponse</b></TD></TR><TR><TD ALIGN="right"></TD><TD ALIGN="right">1</TD><TD ALIGN="left">metrics</TD><TD BGCOLOR="#a6cee3" PORT="pometrics" ALIGN="right" TITLE="string"><i>string</i></TD></TR></TABLE>> ];
+	Node_Ja_102 [ shape=plaintext, tooltip="Metrics", label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" BGCOLOR="#ffd700"><TR><TD COLSPAN="3" PORT="header" BGCOLOR="#ff7f50" ALIGN="right"><b>Metrics</b></TD></TR><TR><TD ALIGN="left"><b>Get</b></TD><TD></TD><TD PORT="poGet_request" ALIGN="right">GetRequest</TD></TR><TR style="border-bottom: 1px solid red"><TD></TD><TD BGCOLOR="#ff7f50"></TD><TD PORT="poGet_response" ALIGN="right" BGCOLOR="#ff7f50">GetResponse</TD></TR></TABLE>> ];
+	Node_Ja_102:poGet_request:e->Node_Ja_100:header[ color="#000000", tooltip="Ja_102 --> Ja_100" ];
+	Node_Ja_102:poGet_response:e->Node_Ja_101:header[ color="#000000", tooltip="Ja_102 --> Ja_101" ];
+	bgcolor="transparent";
+	label="grpc.metrics.v1";
+	node [ shape=plaintext, fontsize=10, fontname="Ubuntu" ] ;
+	rankdir=LR;
+	tooltip="grpc.metrics.v1";
+
+}

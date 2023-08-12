@@ -1,8 +1,10 @@
 {
   "name": "uber-popug",
   "workspaces": [
+    "packages/contracts-ts/*",
     "packages/utils-ts/*",
     "packages/auth",
+    "packages/task",
     "packages/front"
   ],
   "engines": {
@@ -16,6 +18,7 @@
   "devDependencies": {
     "@mikro-orm/migrations": "^5.7.12",
     "@mikro-orm/seeder": "^5.7.12",
+    "@rsdk/tsconfig": "2.4.2",
     "@nestjs/cli": "^9.1.9",
     "@nestjs/testing": "^9.3.12",
     "@types/bcrypt": "^5.0.0",

@@ -1,0 +1,26 @@
+{
+  "name": "@rsdk/task-contract",
+  "version": "2.4.2",
+  "license": "Apache License 2.0",
+  "main": "dist/rsdk.examples.v1.js",
+  "private": true,
+  "scripts": {
+    "build": "rm -rf dist/ && npm run generate && tsc",
+    "generate": "ppm install && ppm generate --out=./.generated typescript",
+    "clean": "rm -rf dist/ node_modules/ .generated",
+    "compile:watch": "tsc -w",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "protobufjs": "^7.1.2"
+  },
+  "peerDependencies": {
+    "@grpc/grpc-js": ">=1.7.0"
+  },
+  "devDependencies": {
+    "@rsdk/prettier-config": "^2.0.0",
+    "@rsdk/tsconfig": "^2.4.2",
+    "nice-grpc": "^2.1.4",
+    "rxjs": "^7.0.0"
+  }
+}

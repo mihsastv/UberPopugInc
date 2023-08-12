@@ -1,12 +1,16 @@
 import { PlatformApp } from '@rsdk/core';
-import { GrpcTransport } from '@rsdk/grpc.server';
+import { HttpTransport } from '@rsdk/http.server';
+import { ExpressAdapter } from '@nestjs/platform-express';
 
 import { ProfileModule } from './profile/profile.module';
+import { AuModule } from './au/au.module';
 
 function main(): void {
+  const express = new ExpressAdapter();
+
   const app = new PlatformApp({
-    modules: [ProfileModule],
-    transports: [new HttpTransport()],
+    modules: [ProfileModule, AuModule],
+    transports: [new HttpTransport(express, { globalPrefix: 'api' })],
   });
 
   app.run();
