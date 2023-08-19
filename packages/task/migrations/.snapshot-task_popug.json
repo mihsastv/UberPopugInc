@@ -83,6 +83,16 @@
           "primary": false,
           "nullable": false,
           "mappedType": "string"
+        },
+        "jira_id": {
+          "name": "jira_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "''",
+          "mappedType": "string"
         }
       },
       "name": "task",

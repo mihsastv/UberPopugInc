@@ -1,8 +1,8 @@
 {
-  "name": "uber-popug.task",
+  "name": "uber-popug.aab",
   "version": "0.0.1",
   "private": "true",
-  "description": "Service for task trecker",
+  "description": "Service for accaunting analitica billing",
   "repository": {
     "url": "https://github.com/mihsastv/UberPopugInc"
   },
@@ -52,6 +52,8 @@
     "@nestjs/axios": "^3.0.0",
     "@nestjs/common": "^9.4.3",
     "@nestjs/config": "^2.3.2",
+    "@nestjs/event-emitter": "^1.4.2",
+    "@nestjs/schedule": "^2.2.3",
     "@nestjs/jwt": "^10.1.0",
     "@nestjs/microservices": "^9.4.2",
     "@rsdk/common": "^2.4.2",
@@ -71,8 +73,8 @@
     "@uber-popug/task.contract": "^0.1.0",
     "@uber-popug/utils-mikro-orm": "^0.1.0",
     "axios": "^1.4.0",
-    "class-validator": "^0.14.0",
     "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
     "ip": "^1.1.8",
     "mime-types": "^2.1.35",
     "reflect-metadata": "^0.1.13",
@@ -84,6 +86,7 @@
   },
   "devDependencies": {
     "@mikro-orm/cli": "^5.7.12",
+    "@types/cron": "^2.4.0",
     "@types/uuid4": "^2.0.0"
   },
   "mikro-orm": {

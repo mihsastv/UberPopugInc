@@ -6,20 +6,17 @@ import {
   Post,
   Put,
   UseGuards,
-  UseInterceptors,
 } from '@nestjs/common';
-import { TaskService } from './task.service';
 import { AuthGuard } from '../common/auth.guard';
 import { TaskAgregateService } from './task.agregate';
-import { User } from '../common/user.decorator';
 import { Task } from '../model';
-import { CreateTaskDto } from './task.dto';
-import { DepricateInterceptor } from '../common/deprication.interceptor';
+import { CreateTaskV2Dto } from './task.dto';
+import { User } from '../common/user.decorator';
+import { TaskService } from './task.service';
 
 @UseGuards(AuthGuard)
-@UseInterceptors(new DepricateInterceptor())
-@Controller('task')
-export class TaskController {
+@Controller('task_v2')
+export class TaskControllerV2 {
   constructor(
     private readonly taskService: TaskService,
     private readonly taskAgregateService: TaskAgregateService,
@@ -31,7 +28,7 @@ export class TaskController {
   }
 
   @Post()
-  addTask(@Body() body: CreateTaskDto) {
+  addTask(@Body() body: CreateTaskV2Dto): Promise<Task> {
     return this.taskAgregateService.creteTask(body);
   }
 
