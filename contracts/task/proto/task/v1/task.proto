@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package task.v1;
+
+import "event/v1/options.proto";
+import "google/protobuf/timestamp.proto";
+
+// TaskStatus
+enum TaskStatus {
+  //TASK_STATUS_UNSPECIFIED = 0;
+  TASK_STATUS_UNSPECIFIED = 0;
+
+  // TASK_STATUS_PROCESSING = 1;
+  TASK_STATUS_PROCESSING = 1;
+
+  // TASK_STATUS_COMPLITED = 2;
+  TASK_STATUS_COMPLITED = 2;
+}
+
+// Example of the event that is generated after an account balance change
+message TaskCreatedEvent {
+  option (event.v1.metadata) = {
+    group : "be"
+
+    // defines the field that stores the value
+    // that will be used to determine the partition
+    partition_key_field : "create"
+  };
+
+  // Public Id
+  string public_id = 1;
+
+  // description: string; 
+  string description = 2;
+
+  // status: TaskStatus;
+  TaskStatus status = 3 ;
+
+  // createdDate: Date;
+  google.protobuf.Timestamp created_date = 4;
+
+  // popugId: string;
+  string popug_id = 5;
+
+  // assignPrice: number;
+  int32 assign_price = 6;
+
+  // complitedPrice: number;
+  int32 complited_price = 7;
+}
+
+// Example of the event that is generated after an account balance change
+message TaskReasignedEvent {
+  option (event.v1.metadata) = {
+    group : "be"
+
+    // defines the field that stores the value
+    // that will be used to determine the partition
+    partition_key_field : "reasigned"
+  };
+
+  // Profile Id
+  string public_id = 1;
+
+  // popugId: string;
+  string popug_id = 2;
+}
+
+// Example of the event that is generated after an account balance change
+message TaskComplitedEvent {
+  option (event.v1.metadata) = {
+    group : "be"
+
+    // defines the field that stores the value
+    // that will be used to determine the partition
+    partition_key_field : "complited"
+  };
+
+  // Profile Id
+  string public_id = 1;
+}
