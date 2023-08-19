@@ -4,6 +4,7 @@ import { Task } from '../model';
 import { ProfileService } from '../profile/profile.service';
 import { TaskStatus } from '@uber-popug/task.contract';
 import { TaskProducerService } from './task.producer';
+import { CreateTaskDto } from './taskDto';
 
 @Injectable()
 export class TaskAgregateService {
@@ -13,11 +14,11 @@ export class TaskAgregateService {
     private readonly taskProducerService: TaskProducerService,
   ) {}
 
-  async creteTask(description: string): Promise<Task> {
+  async creteTask(props: CreateTaskDto): Promise<Task> {
     const popugId = await this.profileService.getRandomPopug();
 
     const newTask = new Task({
-      description,
+      ...props,
       popugId,
       createdDate: new Date(),
       assignPrice: this.getAssignPrice(),

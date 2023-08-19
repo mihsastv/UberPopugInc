@@ -24,7 +24,7 @@ message TaskCreatedEvent {
 
     // defines the field that stores the value
     // that will be used to determine the partition
-    partition_key_field : "create"
+    partition_key_field : "created"
   };
 
   // Public Id
@@ -47,6 +47,9 @@ message TaskCreatedEvent {
 
   // complitedPrice: number;
   int32 complited_price = 7;
+
+  // title
+  string title = 8;
 }
 
 // Example of the event that is generated after an account balance change

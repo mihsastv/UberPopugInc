@@ -1,9 +1,9 @@
 import { Entity, Enum, PrimaryKey, Property, Unique } from '@mikro-orm/core';
 import * as uuid from 'uuid4';
-import { TaskStatus } from '@uber-popug/task.contract';
+import { TaskStatus, TaskCreatedEvent } from '@uber-popug/task.contract';
 
 @Entity()
-export class Task {
+export class Task implements TaskCreatedEvent {
   @PrimaryKey()
   @Unique()
   publicId: string;
@@ -26,6 +26,9 @@ export class Task {
   @Property({ type: 'int' })
   complitedPrice: number;
 
+  @Property()
+  title: string;
+
   constructor(props: Omit<Task, 'publicId' | 'status'>) {
     this.assignPrice = props.assignPrice;
     this.complitedPrice = props.complitedPrice;
@@ -34,5 +37,6 @@ export class Task {
     this.description = props.description;
     this.status = TaskStatus.TASK_STATUS_PROCESSING;
     this.popugId = props.popugId;
+    this.title = props.title;
   }
 }

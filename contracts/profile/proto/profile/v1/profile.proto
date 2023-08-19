@@ -27,7 +27,7 @@ message ProfileCreatedEvent {
 
     // defines the field that stores the value
     // that will be used to determine the partition
-    partition_key_field : "create"
+    partition_key_field : "created"
   };
 
   // Profile Id
@@ -47,7 +47,7 @@ message ProfileDeletedEvent {
 
     // defines the field that stores the value
     // that will be used to determine the partition
-    partition_key_field : "delete"
+    partition_key_field : "deleted"
   };
 
   // Profile Id
@@ -61,7 +61,7 @@ message ProfileUpdatedEvent {
 
     // defines the field that stores the value
     // that will be used to determine the partition
-    partition_key_field : "update"
+    partition_key_field : "updated"
   };
 
   // Profile Id
@@ -81,7 +81,7 @@ message ProfileRoleUpdatedRole {
 
     // defines the field that stores the value
     // that will be used to determine the partition
-    partition_key_field : "role-update"
+    partition_key_field : "role-updated"
   };
 
   // Profile Id

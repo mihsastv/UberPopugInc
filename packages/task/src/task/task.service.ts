@@ -7,12 +7,12 @@ import { Role } from '@uber-popug/profile.contract';
 export class TaskService {
   constructor(private readonly em: EntityManager) {}
 
-  getTasks(props: { popugId: string; role: Role }) {
+  getTasks(props: { popugId: string; role: Role }): Promise<Task[]> {
     const queriesProps: { popugId?: string } = {};
     if (props.role === Role.ROLE_USER) {
       queriesProps.popugId = props.popugId;
     }
 
-    return this.em.find(Task, queriesProps);
+    return this.em.find<Task>(Task, queriesProps);
   }
 }
