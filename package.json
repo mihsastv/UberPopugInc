@@ -5,6 +5,7 @@
     "packages/utils-ts/*",
     "packages/auth",
     "packages/task",
+    "packages/aab",
     "packages/front"
   ],
   "engines": {

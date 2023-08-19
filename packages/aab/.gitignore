@@ -1,0 +1,7 @@
+node_modules/
+dist
+coverage
+
+tsconfig.tsbuildinfo
+
+migrations/.snapshot-nest_service_db.json

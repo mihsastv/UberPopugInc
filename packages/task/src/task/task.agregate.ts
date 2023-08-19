@@ -4,7 +4,8 @@ import { Task } from '../model';
 import { ProfileService } from '../profile/profile.service';
 import { TaskStatus } from '@uber-popug/task.contract';
 import { TaskProducerService } from './task.producer';
-import { CreateTaskDto } from './taskDto';
+import { CreateTaskDto, CreateTaskV2Dto } from './task.dto';
+import { TaskProducerServiceV2 } from './task.producer-V2';
 
 @Injectable()
 export class TaskAgregateService {
@@ -12,12 +13,14 @@ export class TaskAgregateService {
     private readonly em: EntityManager,
     private readonly profileService: ProfileService,
     private readonly taskProducerService: TaskProducerService,
+    private readonly taskProducerServiceV2: TaskProducerServiceV2,
   ) {}
 
-  async creteTask(props: CreateTaskDto): Promise<Task> {
+  async creteTask(props: CreateTaskDto | CreateTaskV2Dto): Promise<Task> {
     const popugId = await this.profileService.getRandomPopug();
 
     const newTask = new Task({
+      jiraId: '',
       ...props,
       popugId,
       createdDate: new Date(),
@@ -27,6 +30,7 @@ export class TaskAgregateService {
 
     await this.em.persistAndFlush(newTask).then(() => {
       this.taskProducerService.taskCreated(newTask);
+      this.taskProducerServiceV2.taskCreated(newTask);
     });
 
     return newTask;

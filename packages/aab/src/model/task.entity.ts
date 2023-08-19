@@ -32,15 +32,19 @@ export class Task implements TaskCreatedEvent {
   @Property({ default: '' })
   jiraId?: string;
 
+  @Property({ type: 'timestamp' })
+  createdAt: Date;
+
   constructor(props: Omit<Task, 'publicId' | 'status'>) {
     this.assignPrice = props.assignPrice;
     this.complitedPrice = props.complitedPrice;
-    this.createdDate = props.createdDate;
+    this.createdDate = props.createdDate || new Date();
     this.publicId = uuid.default();
     this.description = props.description;
     this.status = TaskStatus.TASK_STATUS_PROCESSING;
     this.popugId = props.popugId;
     this.title = props.title;
     this.jiraId = props.jiraId || '';
+    this.createdAt = new Date();
   }
 }
